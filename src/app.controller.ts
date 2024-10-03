@@ -76,8 +76,11 @@ export class AppController {
         errors,
         data: accountData
       })
+      return;
     }
-
+    if(this.#accounts.find(e => e.id == accountData.id) != undefined){
+      errors.push('Ilyen számlaszám már van👨🏿‍🚒')
+    }
     this.#accounts.push(newAccount)
     //303 -> /newAccountsSuccess
     response.redirect(303, 'newAccountSuccess')
